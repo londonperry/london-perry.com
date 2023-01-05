@@ -1,0 +1,26 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Marquee from '../components/Marquee.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../config';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+
+	<body>
+		<Header title={SITE_TITLE} />
+		<main>
+			<h1>Hello! 👋</h1>
+			<p>
+				Welcome to the official website of London Perry. Please let me take your coat so you can stay a while seeing as though you have taken the time out of your day to visit my website out of the ~2 billion websites on the internet. I hope you enjoy your stay! 
+			</p>
+	<Marquee items={[`"No one knows what the outcome will be. So, choose whatever you'll regret the least." - Levi Ackerman`]}/>
+</main>
+		<Footer />
+	</body>
+</html>

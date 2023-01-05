@@ -1,0 +1,82 @@
+---
+const { href, items = [] } = Astro.props;
+const Tag = href ? 'a' : 'div';
+---
+
+<div class="marquee__container" role="marquee" aria-labelledby="not-marquee-label">
+  <Tag {href} class="track">
+    {Array.from({ length: 6 }, (_, i) => <span class="group" id={i===0 ? 'not-marquee-label' : undefined}
+      aria-hidden={i> 0 ? 'true' : undefined}>{items.map(item => <span>{item}</span>)}</span>)}
+  </Tag>
+</div>
+
+<style>
+  .marquee__container {
+    margin: 1rem 0;
+    --speed: 25;
+    --gap: 1rem;
+    display: flex;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-top: 2px solid var(--theme-on-background);
+    border-bottom: 2px solid var(--theme-on-background);
+    font-size: var(--step-3);
+    font-family: var(--font-family-heading);
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+  .track:hover,
+  .marquee__container[visible="false"] .track {
+    animation-play-state: paused;
+  }
+
+  .track {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    white-space: nowrap;
+    text-decoration: none;
+    font-size: var(--step-3);
+    transition: color 300ms cubic-bezier(0.23, 1, 0.320, 1);
+  }
+
+  .track:hover {
+    color: var(--theme-on-primary);
+    background-color: var(--theme-primary);
+  }
+
+  .group {
+    display: inline-flex;
+    animation: marquee calc(var(--speed) * 1s) linear infinite;
+    animation-play-state: inherit;
+    user-select: none;
+    padding-left: var(--gap);
+    will-change: transform;
+    align-items: center;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .track {
+      animation-play-state: paused;
+      justify-content: flex-start;
+    }
+  }
+
+  .group>span+span {
+    padding-left: var(--gap);
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translate3d(0, 0, 0)
+    }
+    to {
+      transform: translate3d(-100%, 0, 0)
+    }
+  }
+</style>
