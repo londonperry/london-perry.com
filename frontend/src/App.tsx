@@ -26,7 +26,6 @@ function App() {
 
   return (
     <>
-      {/* Dither background rendered via portal */}
       {typeof window !== "undefined" &&
         createPortal(
           <div
@@ -43,19 +42,23 @@ function App() {
           </div>,
           document.getElementById("bg-root") || document.body
         )}
-      {/* Site content goes here */}
       <div className="fixed inset-0 z-10 min-h-screen flex items-center justify-center pointer-events-none dark">
-        <Card className="min-w-[320px] max-w-[400px] w-full">
-          <CardHeader>
-            <CardTitle>Welcome!</CardTitle>
-          </CardHeader>
-          <CardContent>
-            My name is London Perry and I am a Business Analyst based out of
-            Boise, ID
-          </CardContent>
-          <CardFooter>{/* Add footer content here if needed */}</CardFooter>
-        </Card>
-        {/* ...your site content... */}
+        <div className="flex flex-row gap-8 items-center">
+          <Card className="min-w-[220px] max-w-[260px] w-full flex items-center justify-center">
+            <CardContent>
+              <img src="/lp.png" alt="London Perry" className="w-48 h-48 object-contain mx-auto" />
+            </CardContent>
+          </Card>
+          <Card className="min-w-[320px] max-w-[400px] w-full">
+            <CardHeader>
+              <CardTitle>Welcome!</CardTitle>
+            </CardHeader>
+            <CardContent>
+              My name is London Perry and I am a Business Analyst based out of Boise, ID
+            </CardContent>
+            <CardFooter></CardFooter>
+          </Card>
+        </div>
       </div>
     </>
   );

@@ -14,7 +14,7 @@ import {
 
 import "@/components/ui/pixelact-ui/styles/styles.css";
 
-export const cardVariants = cva("", {
+const cardVariants = cva("", {
   variants: {
     font: {
       normal: "",
